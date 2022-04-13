@@ -1,3 +1,6 @@
+# First React project : project n°11 from the openclassrooms training
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
