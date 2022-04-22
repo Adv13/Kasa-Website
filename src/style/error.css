@@ -1,0 +1,23 @@
+#error {
+    font-size: 100px;
+    font-weight: bold;
+    margin-top:100px;
+    margin-bottom:10px;
+}
+
+#oups {
+    font-size:25px;
+    margin-top:10px;
+    margin-bottom:100px;
+}
+
+#returnHome {
+    font-size:12px;
+    margin-top:150px;
+    margin-bottom:150px;
+}
+
+a:link {
+    color: #FF6060;
+}
+
