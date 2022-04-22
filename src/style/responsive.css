@@ -30,6 +30,24 @@
       -ms-flex-pack: distribute;
           justify-content: space-around;
     }
+
+    body {
+        margin:auto;
+    }
+
+    main {
+        width:100%;
+    }
+
+    .banner {
+        width:100%;
+    }
+
+    .listLogements {
+        flex-direction: row;
+        flex-wrap: wrap
+    }
+
 }
 
 /* Large devices (desktops, less than 1600px)*/
@@ -46,6 +64,23 @@
           flex-wrap: wrap;
       -ms-flex-pack: distribute;
           justify-content: space-around;
+    }
+
+    body {
+        margin:auto;
+    }
+
+    main {
+        width:100%;
+    }
+
+    .banner {
+        width:100%;
+    }
+
+    .listLogements {
+        flex-direction: row;
+        flex-wrap: wrap
     }
 }
 
@@ -64,4 +99,22 @@
       -ms-flex-pack: distribute;
           justify-content: space-around;
     }
+
+    body {
+        margin:auto;
+    }
+
+    main {
+        width:100%;
+    }
+
+    .banner {
+        width:100%;
+    }
+
+    .listLogements {
+        flex-direction: row;
+        flex-wrap: wrap
+    }
+    
 }
