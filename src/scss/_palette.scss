@@ -1,0 +1,24 @@
+$customPrimaryColor:#FF6060;
+$customBackgroundColor:#fff;
+$customSecondaryColor:#F6F6F6;
+$customFooterColor:#000;
+
+$custom-theme-colors:(
+    "primaryColor":$customPrimaryColor,
+    "backgroundColor":$customBackgroundColor,
+    "secondaryColor":$customSecondaryColor,
+    "footerColor":$customFooterColor,
+);
+
+// appliquer la ou les couleur(s) personalisé(s) à toutes les fonctionalités de bootstrap
+$theme-colors:map.merge($custom-theme-colors,$theme-colors);
+
+//pour générer une palette personalisée avec une couleur en passant outre le bug qui concerne background et text (le bug empêche d'avoir la couleur personalisée de base) :
+@each $key, $val in $custom-theme-colors {
+    .bg-#{$key} {
+        background-color: $val;
+    }
+    .text-#{$key} {
+        color: $val;
+    }
+}
