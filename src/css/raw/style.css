@@ -5603,7 +5603,7 @@ fieldset:disabled .btn {
   width: 100%;
   padding: 1rem 1.25rem;
   font-size: 1rem;
-  color: #212529;
+  color: #FF6060;
   text-align: left;
   background-color: #FF6060;
   border: 0;
@@ -5655,7 +5655,7 @@ fieldset:disabled .btn {
   z-index: 3;
   border-color: #FF6060;
   outline: 0;
-  /*box-shadow: 0 0 0 0.25rem rgba(76, 28, 28, 0.75);*/
+
 }
 
 .accordion-header {
@@ -12585,24 +12585,6 @@ a:visited {
   color: #FF6060;
 }
 
-/*
-.accardion-button{
-
-    background-color:#FF6060!important;
-}
-
-.accordion-button:not(.collapsed){
-    color:#FF6060!important;
-}
-
-.accordion-item{
-    color:#FF6060!important;
-}
-
-.accordion-button:focus{
-    color:#FF6060!important;
-    border-color: #FF6060;
-}*/
 .textCenter {
   text-align: center;
   vertical-align: center;
@@ -12611,6 +12593,11 @@ a:visited {
 .imgAbout {
   width: 100%;
   object-fit: cover;
+}
+
+.imgProfile {
+  width: 100%;
+  height: 70px;
 }
 
 .borderRadius {

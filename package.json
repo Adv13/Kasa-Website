@@ -17,8 +17,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "sass":"sass global.scss src/css/raw/style.css --watch",
-    "purge":"purgecss -css src/css/raw/style.css --content index.html -o src/css/clean/style.css"
+    "sass": "sass global.scss src/css/raw/style.css --watch",
+    "purge": "purgecss -css src/css/raw/style.css --content index.html -o src/css/clean/style.css"
   },
   "eslintConfig": {
     "extends": [

@@ -11,24 +11,6 @@ a:visited{
     color:#FF6060;
 }
 
-.accardion-button{
-    
-    background-color:#FF6060!important;
-}
-
-.accordion-button:not(.collapsed){
-    color:#FF6060!important;
-}
-
-.accordion-item{
-    color:#FF6060!important;
-}
-
-.accordion-button:focus{
-    color:#FF6060!important;
-    border-color: #FF6060;
-}
-
 .textCenter{
     text-align: center;
     vertical-align: center;
@@ -37,6 +19,11 @@ a:visited{
 .imgAbout{
     width:100%;
     object-fit: cover;
+}
+
+.imgProfile{
+    width:100%;
+    height:70px;
 }
 
 .borderRadius{
