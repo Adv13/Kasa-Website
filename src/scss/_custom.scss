@@ -1,8 +1,5 @@
-.banner{
-    background-image: url(../assets/eric-muhr-P_XxsdVgtpQ-unsplash.png);
-}
 
-#gradientImg{
+.gradientImg{
     background-image: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.8));
 }
 
@@ -13,32 +10,87 @@
 a:visited{
     color:#FF6060;
 }
+/*
+.accardion-button{
+    
+    background-color:#FF6060!important;
+}
+
+.accordion-button:not(.collapsed){
+    color:#FF6060!important;
+}
+
+.accordion-item{
+    color:#FF6060!important;
+}
+
+.accordion-button:focus{
+    color:#FF6060!important;
+    border-color: #FF6060;
+}*/
 
 .textCenter{
     text-align: center;
     vertical-align: center;
 }
 
+.imgAbout{
+    width:100%;
+    object-fit: cover;
+}
+
+.borderRadius{
+    border-radius:2vmin 2vmin 2vmin 2vmin;
+}
+
 /* Small devices (landscape phones, less than 768px)*/
 @media (min-width:400px) and (max-width: 767.98px) {
 
     #titleSize{
-        font-size: 3em;
+        font-size: 1.25em;
         width:50px;
+        padding-left: 20px;
+        left:75px;
     }
-    
+    .errorTitle{
+        font-size: 8em;
+    }
+    .textAlign{
+        text-align: center;
+    }
+    .margin-top{
+        margin-top:100px;
+    }
     }
 
 /* Medium devices (tablets, less than 892px)*/
 @media (min-width:768px) and (max-width: 891.98px) {
-
+    .errorTitle{
+        font-size: 13em;
+    }
+    .textAlign{
+        text-align: center;
+    }
+    .margin-top{
+        margin-top:100px;
+    }
     }
 
 /* Large devices (desktops, less than 1600px)*/
 @media (min-width:892px) and (max-width:1599.98px){
     #titleSize{
-        font-size: 5em;
+        font-size: 4em;
         width:50px;
-        flex-wrap: nowrap;
+        left:125px;
+    }
+
+    .errorTitle{
+        font-size: 15em;
+    }
+    .textAlign{
+        text-align: center;
+    }
+    .margin-top{
+        margin-top:10px;
     }
 }
