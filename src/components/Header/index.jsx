@@ -8,7 +8,7 @@ const HomeLogo = styled.img`
 `
 
 const NavContainer = styled.nav`
-  padding: 30px;
+  padding: 30px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;

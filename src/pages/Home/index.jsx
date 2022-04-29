@@ -1,59 +1,149 @@
 import styled from 'styled-components'
+import DataLogements from '../../data/dataLogements.json'
 import colors from '../../utils/style/colors'
-import { StyledLink } from '../../utils/style/Atoms'
-import HomeIllustration from '../../assets/home-illustration.svg'
+import HomeImg from '../../assets/eric-muhr-P_XxsdVgtpQ-unsplash.png'
+import { useState, useEffect } from 'react'
+import Card from '../../components/Card'
+import { Loader } from '../../utils/style/Atoms'
+
 
 const HomeWrapper = styled.div`
   display: flex;
-  justify-content: center;
-`
-
-const HomerContainer = styled.div`
-  margin: 30px;
-  background-color: ${colors.background};
-  padding: 60px 90px;
-  display: flex;
-  flex-direction: row;
-  max-width: 1200px;
-`
-
-const LeftCol = styled.div`
-  display: flex;
   flex-direction: column;
   justify-content: center;
-  flex: 1;
-  ${StyledLink} {
-    max-width: 250px;
-  }
+  padding: 30px 50px;
 `
-
+const PageTitle = styled.div`
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  height: 50%;
+  padding: 30px;
+  object-fit:contain;
+  background-image:url(${HomeImg});
+  border-radius: 1rem;
+  flex: 1;
+`
 const StyledTitle = styled.h2`
-  padding-bottom: 30px;
-  max-width: 280px;
+  text-align:center;
   line-height: 50px;
+  color:${colors.blackColor};
+
+`
+const PageContent = styled.div`
+  max-width:100%;
+  height:600px;
+  margin-top:20px;
+  background-color: ${colors.secondary};
+  border-radius: 1rem;`
+
+const LoaderWrapper = styled.div`
+  display: flex;
+  justify-content: center;
 `
 
-const Illustration = styled.img`
-  flex: 1;
+const CardsContainer = styled.div`
+  display: grid;
+  gap: 24px;
+  grid-template-rows: 350px 350px;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  justify-items: center;
 `
 
 function Home() {
+ const [isDataLoading, setDataLoading] = useState(false)
+ const [error, setError] = useState(false)
+ const [DataLogements, setDataLogements] = useState([])
+
+useEffect(()=>{
+  async function fetchDataLogements(){
+    setDataLoading(true)
+    try{
+      const response = await fetch('DataLogements')
+      const {DataLogements} = await response.json()
+      setDataLogements(DataLogements)
+    }
+    catch(err){
+      console.log('===== error =====', err)
+      setError(true)
+    }
+    finally{
+      setDataLoading(false)
+    }
+    
+  }
+  fetchDataLogements()
+}, [])
+
+if (error) {
+  return <span>Oups! Il y a eu un problème.</span>
+}
+
   return (
+    <div>
     <HomeWrapper>
-      <HomerContainer>
-        <LeftCol>
+        <PageTitle>
           <StyledTitle>
-            Repérez vos besoins, on s’occupe du reste, avec les meilleurs
-            talents
+            Chez vous, partout et ailleurs
           </StyledTitle>
-          <StyledLink to="/survey/1" $isFullLink>
-            Faire le test
-          </StyledLink>
-        </LeftCol>
-        <Illustration src={HomeIllustration} />
-      </HomerContainer>
+        </PageTitle>
+        <PageContent>
+        {isDataLoading ? (
+           <LoaderWrapper>
+              <Loader />
+            </LoaderWrapper>
+          ):(
+          <CardsContainer>
+            {DataLogements.map((profile, index) => (
+              <Card
+                key={`${profile.name}-${index}`}
+                title={profile.title}
+                cover={profile.cover}
+                pictures={profile.pictures}
+                description={profile.description}
+                name={profile.host.name}
+                picture={profile.host.picture}
+                rating={profile.rating}
+                location={profile.location}
+                equipments={profile.equipments}
+                tags={profile.tags}
+              />
+            ))}
+          </CardsContainer>
+           )}
+        </PageContent>
+         
+         
+        
+
     </HomeWrapper>
+    </div>
   )
 }
 
 export default Home
+
+          // {isDataLoading ? (
+          //   <LoaderWrapper>
+          //     <Loader />
+          //   </LoaderWrapper>
+          // ):(
+          // <CardsContainer>
+          //   {DataLogements.map((profile, index) => (
+          //     <Card
+          //       key={`${profile.name}-${index}`}
+          //       title={profile.title}
+          //       cover={profile.cover}
+          //       pictures={profile.pictures}
+          //       description={profile.description}
+          //       name={profile.host.name}
+          //       picture={profile.host.picture}
+          //       rating={profile.rating}
+          //       location={profile.location}
+          //       equipments={profile.equipments}
+          //       tags={profile.tags}
+          //     />
+          //   ))}
+          // </CardsContainer>
+          // )}
