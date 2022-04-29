@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import DataLogements from '../../data/dataLogements.json'
+import Data from '../../data/dataLogements2.json'
 import colors from '../../utils/style/colors'
 import HomeImg from '../../assets/eric-muhr-P_XxsdVgtpQ-unsplash.png'
 import { useState, useEffect } from 'react'
@@ -50,34 +50,92 @@ const CardsContainer = styled.div`
   align-items: center;
   justify-items: center;
 `
+const SpanError = styled.h2`
+  padding:320px;
+  text-align:center;
+  line-height: 50px;
+  color:${colors.primary};`
 
 function Home() {
  const [isDataLoading, setDataLoading] = useState(false)
  const [error, setError] = useState(false)
  const [DataLogements, setDataLogements] = useState([])
 
-useEffect(()=>{
-  async function fetchDataLogements(){
-    setDataLoading(true)
-    try{
-      const response = await fetch('DataLogements')
-      const {DataLogements} = await response.json()
-      setDataLogements(DataLogements)
-    }
-    catch(err){
-      console.log('===== error =====', err)
-      setError(true)
-    }
-    finally{
-      setDataLoading(false)
-    }
+  // Test dans console
+  useEffect(() => {
+    //let url = 'data/dataLogements2.json'
+    fetch(Data)
+         .then((response) => response.json()
+         .then(({ DataLogements }) => console.log(DataLogements))
+         .catch((error) => console.log(error))
+     )
+ }, [])
+
+// METHODE 1
+//   useEffect(() => {
+//   fetchData()
+//   setDataLoading(true)
+//   fetch(`Data`).then((response) =>
+//     response.json().then(({ DataLogements }) => {
+//       setDataLogements(DataLogements)
+//       setDataLoading(false)
+//     })
+//   )
+// }, [])
+
+// METHODE 2
+// useEffect(()=>{
+//   async function fetchDataLogements(){
+//     setDataLoading(true)
+//     try{
+//       const response = await fetch(Data)
+//       const {DataLogements} = await response.json()
+//       setDataLogements(DataLogements)
+//     }
+//     catch(err){
+//       console.log('===== error =====', err)
+//       setError(true)
+//     }
+//     finally{
+//       setDataLoading(false)
+//     }
     
-  }
-  fetchDataLogements()
-}, [])
+//   }
+//   fetchDataLogements()
+// }, [])
+
+// if (error) {
+//   return <span>Oups! Il y a eu un problème.</span>
+// }
+
+// METHODE 3
+ const getData = () => {
+  setDataLoading(true);
+   fetch("dataLogements.json",{
+     headers: {
+       "Content-Type": "application/json",
+       Accept: "application/json",
+     },
+   })
+   .then(function(response){
+     return response.json();
+   })
+   .then(function (myJson){  
+     setDataLogements(myJson);
+     setDataLoading(false);
+   })
+   .catch(function(err){
+      console.log('===== error =====', err)
+      setError(true);
+    })
+ };
+
+ useEffect(()=>{
+   getData();
+ }, []);
 
 if (error) {
-  return <span>Oups! Il y a eu un problème.</span>
+  return <SpanError>Oups! Il y a eu un problème.</SpanError>
 }
 
   return (
