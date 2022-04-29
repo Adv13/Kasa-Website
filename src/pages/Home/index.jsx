@@ -111,7 +111,7 @@ function Home() {
 // METHODE 3
  const getData = () => {
   setDataLoading(true);
-   fetch("dataLogements.json",{
+   fetch("data/dataLogements.json",{
      headers: {
        "Content-Type": "application/json",
        Accept: "application/json",
@@ -135,7 +135,7 @@ function Home() {
  }, []);
 
 if (error) {
-  return <SpanError>Oups! Il y a eu un problème.</SpanError>
+  return <SpanError>Oups! Il y a eu un problème avec le chargement des données.</SpanError>
 }
 
   return (
