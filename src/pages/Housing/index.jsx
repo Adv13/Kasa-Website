@@ -28,35 +28,20 @@ const PageSubtitle = styled.h2`
   padding-bottom: 30px;
 `
 
-const freelanceProfiles = [
-  {
-    name: 'Jane Doe',
-    jobTitle: 'Devops',
-  },
-  {
-    name: 'John Doe',
-    jobTitle: 'Developpeur frontend',
-  },
-  {
-    name: 'Jeanne Biche',
-    jobTitle: 'Développeuse Fullstack',
-  },
-]
-
 const LoaderWrapper = styled.div`
   display: flex;
   justify-content: center;
 `
 
-function Locations() {
+function Housing() {
   const [isDataLoading, setDataLoading] = useState(false)
   const [error, setError] = useState(false)
-  const [freelancersList, setFreelancesList] = useState([])
+  const [freelancersList, setHousingList] = useState([])
 
 
   // Test dans console
   useEffect(() => {
-    fetch(`http://localhost:8000/freelances`)
+    fetch(`http://localhost:8000/Housing`)
          .then((response) => response.json()
          .then(({ freelancersList }) => console.log(freelancersList))
          .catch((error) => console.log(error))
@@ -65,12 +50,12 @@ function Locations() {
 
  //méthode async
  useEffect(()=>{
-  async function fetchFreelances(){
+  async function fetchHousing(){
     setDataLoading(true)
     try{
-      const response = await fetch('http://localhost:8000/freelances')
+      const response = await fetch('http://localhost:8000/Housing')
       const {freelancersList} = await response.json()
-      setFreelancesList(freelancersList)
+      setHousingList(freelancersList)
     }
     catch(err){
       console.log('===== error =====', err)
@@ -81,7 +66,7 @@ function Locations() {
     }
     
   }
-  fetchFreelances()
+  fetchHousing()
 }, [])
 
 if (error) {
@@ -114,4 +99,4 @@ if (error) {
   )
 }
 
-export default Locations
+export default Housing

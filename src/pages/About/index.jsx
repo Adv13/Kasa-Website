@@ -1,4 +1,4 @@
-function Results() {
+function About() {
   return (
     <div>
       <h1>Résultats</h1>
@@ -6,4 +6,4 @@ function Results() {
   )
 }
 
-export default Results
+export default About

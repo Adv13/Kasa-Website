@@ -63,9 +63,11 @@ function Home() {
 
   // Test dans console
   useEffect(() => {
+    
     //let url = 'data/dataLogements2.json'
     fetch(Data)
          .then((response) => response.json()
+         
          .then(({ DataLogements }) => console.log(DataLogements))
          .catch((error) => console.log(error))
      )

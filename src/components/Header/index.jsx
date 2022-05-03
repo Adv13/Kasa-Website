@@ -22,7 +22,7 @@ function Header() {
       </Link>
       <div>
         <StyledLink to="/">Accueil</StyledLink>
-        <StyledLink to="/freelances">A Propos</StyledLink>
+        <StyledLink to="/Housing">A Propos</StyledLink>
 
       </div>
     </NavContainer>
