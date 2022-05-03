@@ -1,102 +1,76 @@
-import { useState, useEffect } from 'react'
-import Card from '../../components/Card'
-import styled from 'styled-components'
-import colors from '../../utils/style/colors'
-import { Loader } from '../../utils/style/Atoms'
-
-const CardsContainer = styled.div`
-  display: grid;
-  gap: 24px;
-  grid-template-rows: 350px 350px;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-  justify-items: center;
-`
-
-const PageTitle = styled.h1`
-  font-size: 30px;
-  color: black;
-  text-align: center;
-  padding-bottom: 30px;
-`
-
-const PageSubtitle = styled.h2`
-  font-size: 20px;
-  color: ${colors.secondary};
-  font-weight: 300;
-  text-align: center;
-  padding-bottom: 30px;
-`
-
-const LoaderWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-`
+import Gallery from "../../components/Gallery/index";
+import Accordion from "../../components/Accordion/index";
+import Rating from "../../components/Rating/index";
+import Tag from "../../components/Tag/index";
+import { useHistory, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 function Housing() {
-  const [isDataLoading, setDataLoading] = useState(false)
-  const [error, setError] = useState(false)
-  const [freelancersList, setHousingList] = useState([])
+  const { id } = useParams();
+  const [appartment, setAppartment] = useState(null);
+  const navigate = useHistory();
 
-
-  // Test dans console
   useEffect(() => {
-    fetch(`http://localhost:8000/Housing`)
-         .then((response) => response.json()
-         .then(({ freelancersList }) => console.log(freelancersList))
-         .catch((error) => console.log(error))
-     )
- }, [])
+    const getData = () => {
+      fetch("../../data.json", {
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+      })
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (myJson) {
+          let myAppartment = myJson.find((app) => app.id === id);
+          if (myAppartment) {
+            setAppartment(myAppartment);
+          } else {
+            navigate("/*");
+          }
+        });
+    };
+    getData();
+  }, [appartment, id, navigate]);
 
- //méthode async
- useEffect(()=>{
-  async function fetchHousing(){
-    setDataLoading(true)
-    try{
-      const response = await fetch('http://localhost:8000/Housing')
-      const {freelancersList} = await response.json()
-      setHousingList(freelancersList)
-    }
-    catch(err){
-      console.log('===== error =====', err)
-      setError(true)
-    }
-    finally{
-      setDataLoading(false)
-    }
-    
-  }
-  fetchHousing()
-}, [])
+  return appartment ? (
+    <div className="housing">
+      <Gallery
+        pictures={appartment.pictures}
+        title={appartment.title}
+      ></Gallery>
+      <div className="content">
+        <div className="content--left">
+          <div className="titles">
+            <h1>{appartment.title}</h1>
+            <h2>{appartment.location}</h2>
+          </div>
+          <Tag tags={appartment.tags} />
+        </div>
+        <div className="content--right">
+          <div className="host">
+            <p>{appartment.host.name}</p>
+            <img src={appartment.host.picture} alt={appartment.host.name} />
+          </div>
+          <Rating rating={appartment.rating}></Rating>
+        </div>
+      </div>
 
-if (error) {
-  return <span>Oups il y a eu un problème</span>
-}
+      <div className="accordions">
+        <div className="description">
+          <Accordion title="Description" content={appartment.description} />
+        </div>
 
-  return (
-    <div>
-      <PageTitle>Trouvez votre prestataire</PageTitle>
-      <PageSubtitle>
-        Chez Shiny nous réunissons les meilleurs profils pour vous.
-      </PageSubtitle>
-      {isDataLoading ? (
-        <LoaderWrapper>
-          <Loader />
-        </LoaderWrapper>
-      ):(
-      <CardsContainer>
-        {freelancersList.map((profile, index) => (
-          <Card
-            key={`${profile.name}-${index}`}
-            label={profile.job}
-            title={profile.name}
-            picture={profile.picture}
+        <div className="equipement">
+          <Accordion
+            title="Équipements"
+            content={appartment.equipments.map((equipment, index) => (
+              <li key={index}>{equipment}</li>
+            ))}
           />
-        ))}
-      </CardsContainer>
-      )}
+        </div>
+      </div>
     </div>
-  )
+  ) : null;
 }
-
-export default Housing
+export default Housing;

@@ -1,32 +1,35 @@
-import { Link } from 'react-router-dom'
-import styled from 'styled-components'
-import { StyledLink } from '../../utils/style/Atoms'
+import { Link } from "react-router-dom";
 import LogoKasaRouge from '../../assets/LOGO.png'
-
-const HomeLogo = styled.img`
-  height: 50px;
-`
-
-const NavContainer = styled.nav`
-  padding: 30px 50px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
+import { useLocation } from "react-router-dom";
 
 function Header() {
   return (
-    <NavContainer>
-      <Link to="/">
-        <HomeLogo src={LogoKasaRouge} />
-      </Link>
-      <div>
-        <StyledLink to="/">Accueil</StyledLink>
-        <StyledLink to="/Housing">A Propos</StyledLink>
-
+    <header className="header">
+      <div className="logo">
+        <img src={LogoKasaRouge} alt="logo"></img>
       </div>
-    </NavContainer>
-  )
+      <nav className="links">
+        {useLocation().pathname === "/" ? (
+          <Link className="homeLink active" to="/">
+            Accueil
+          </Link>
+        ) : (
+          <Link className="homeLink" to="/">
+            Accueil
+          </Link>
+        )}
+        {useLocation().pathname === "/about" ? (
+          <Link className="aboutLink active" to="/about">
+            A Propos
+          </Link>
+        ) : (
+          <Link className="aboutLink" to="/about">
+            A Propos
+          </Link>
+        )}
+      </nav>
+    </header>
+  );
 }
 
-export default Header
+export default Header;
