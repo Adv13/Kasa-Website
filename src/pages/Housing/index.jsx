@@ -2,13 +2,13 @@ import Gallery from "../../components/Gallery/index";
 import Accordion from "../../components/Accordion/index";
 import Rating from "../../components/Rating/index";
 import Tag from "../../components/Tag/index";
-import { useHistory, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 function Housing() {
   const { id } = useParams();
   const [appartment, setAppartment] = useState(null);
-  const navigate = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const getData = () => {
@@ -24,8 +24,10 @@ function Housing() {
         .then(function (myJson) {
           let myAppartment = myJson.find((app) => app.id === id);
           if (myAppartment) {
+            console.log(myAppartment);
             setAppartment(myAppartment);
           } else {
+            console.log('test 3 données sur page housing');
             navigate("/*");
           }
         });
