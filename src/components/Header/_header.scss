@@ -3,10 +3,10 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 20px;
+    margin: 2%;
   
     .logo {
-      margin: 10px 50px;
+      margin: 10px 2%;
     }
   
     .links {
@@ -25,18 +25,18 @@ header {
     }
   }
   
-  @media (max-width: 980px) {
+  @media (max-width: 768px) {
     header {
       height: 80px;
       .logo {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
         height: 100%;
         width: 50%;
-        margin: 0;
+        //margin: 10px;
         img {
-          width: 90%;
+         // width: 70%;
           height: auto;
         }
       }
@@ -45,7 +45,7 @@ header {
         height: 100%;
         width: 50%;
         display: flex;
-        justify-content: center;
+        justify-content: space-around;
         align-items: center;
         text-transform: uppercase;
   
