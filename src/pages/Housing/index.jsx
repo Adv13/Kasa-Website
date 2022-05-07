@@ -15,6 +15,21 @@ function Housing() {
 
   useEffect(() => {//ce hook permet de déclencher une fonction de manière asynchrone, ici la récupération des données pour les intégrer dans les éléments du return de la page
     const getData = () => {//stock dans getData les données
+
+
+      // const getData = async () =>
+      // await fetch("./scripts/data/recipes.json", {
+      //   mode: "no-cors",
+      //   method: "GET",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     Accept: "application/json",
+      //   },
+      // })
+      //   .then((res) => res.json())
+      //   .catch((err) => console.log("An error occurs when fetching recipes", err));
+      
+
       fetch("../../data.json", {//récupère les données dans le fichier json
         headers: {//infos sur le type de données
           "Content-Type": "application/json",

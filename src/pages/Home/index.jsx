@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import imgTop from "../../assets/top-img.png";
 import Card from "../../components/Card/index";
-import { Loader } from '../../utils/style/Atoms'
 
 function Home() {
   const [data, setData] = useState([]);//data stocke l'objet retourné par l'API grâce à useState tandis que setData permet de l'exploiter
@@ -39,9 +38,6 @@ function Home() {
         <img src={imgTop} alt="background" />
         <p>Chez vous, partout et ailleurs</p>
       </div>
-      {isDataLoading ? (
-        <Loader />
-      ) : (
       <div className="main">
         <div className="main--grid">
           {data &&
@@ -50,7 +46,6 @@ function Home() {
             ))}
         </div>
       </div>
-      )}
     </section>
   );
 }
