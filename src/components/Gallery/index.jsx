@@ -3,7 +3,7 @@ import leftArrow from "../../assets/left-arrow.png";
 import rightArrow from "../../assets/right-arrow.png";
 
 function Gallery(props) {
-  const { pictures, title } = props;
+  const { pictures, title } = props; 
   const [activeIndex, updateActiveIndex] = useState(0);
 
   const prevImgIndex = activeIndex ? activeIndex - 1 : pictures.length - 1;
